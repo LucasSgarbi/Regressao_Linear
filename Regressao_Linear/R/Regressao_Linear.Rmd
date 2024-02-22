@@ -1,0 +1,38 @@
+---
+Faça voce mesmo 
+Criar um modelo de regressão linear para prever
+qual será o Investimento inicial necessário de uma
+franquia a partir da Taxa Anual cobrado pelo
+franqueador.
+---
+```{r}
+#install.packages("corrgram")
+library(corrgram)
+```
+Importando dados
+```{r}
+dados = read.csv("slr12.csv",sep = ";")
+dados
+```
+Verificando Corelaçoes
+
+```{r}
+cor(dados)
+```
+
+Criando modelo
+```{r}
+modelo = lm(FrqAnual ~ CusInic, data=dados)
+modelo
+```
+Plot do grafico 
+```{r}
+plot(FrqAnual ~ CusInic, data=dados, ylab = "Franquia Anual", xlab=" Custo inicial", main="Franquia")
+abline(modelo)
+```
+Prevendo valor de franquia com um custo inicial de 1500
+
+```{r}
+predict(modelo,data.frame(CusInic = 1500))
+```
+
